@@ -43,30 +43,30 @@ class Product extends Model
     }
 
     // Relationship with Buys
-    // public function buys()
-    // {
-    //     return $this->hasMany(Buy::class);
-    // }
+    public function buys()
+    {
+        return $this->hasMany(Buy::class);
+    }
 
-    // // Relationship with Sales
-    // public function sales()
-    // {
-    //     return $this->hasMany(Sale::class);
-    // }
+    // Relationship with Sales
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 
-    // Stock available (custom accessor)
-    // public function getStockAttribute()
-    // {
-    //     $bought = $this->buys()->sum('quantity');
-    //     $sold = $this->sales()->sum('quantity');
-    //     return $bought - $sold;
-    // }
+    Stock available (custom accessor)
+    public function getStockAttribute()
+    {
+        $bought = $this->buys()->sum('quantity');
+        $sold = $this->sales()->sum('quantity');
+        return $bought - $sold;
+    }
 
-    //Image URL (custom accessor)
-    // public function getImageUrlAttribute()
-    // {
-    //     return $this->image ? asset('storage/' . $this->image) : asset('images/default-product.png');
-    // }
+    Image URL (custom accessor)
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? asset('storage/' . $this->image) : asset('images/default-product.png');
+    }
 
     public function images()
     {
@@ -78,4 +78,11 @@ class Product extends Model
     {
         return $this->hasOne(ProductImage::class)->where('is_primary', true);
     }
+
+     // Relationship with Sales
+    public function logs()
+    {
+        return $this->hasMany(ProductBuySalesLog::class);
+    }
+
 }

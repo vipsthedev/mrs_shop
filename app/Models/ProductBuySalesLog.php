@@ -15,4 +15,10 @@ class ProductBuySalesLog extends Model
         'sort_order',
         'is_primary',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
 }

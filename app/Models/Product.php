@@ -62,7 +62,7 @@ class Product extends Model
         return $bought - $sold;
     }
 
-    Image URL (custom accessor)
+    //Image URL (custom accessor)
     public function getImageUrlAttribute()
     {
         return $this->image ? asset('storage/' . $this->image) : asset('images/default-product.png');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 16, 2025 at 05:49 PM
+-- Generation Time: Apr 16, 2025 at 05:10 PM
 -- Server version: 8.3.0
 -- PHP Version: 7.4.33
 
@@ -63,29 +63,6 @@ INSERT INTO `accessories` (`id`, `name`, `company_id`, `category_id`, `brand`, `
 (2, ';lk', 3, 1, 'wdf', 'sdf', NULL, '1', 'wer', '2025-11-11', 125, 15, 132.00, 132.00, 12.00, '23', '23', 1, '2025-03-25 11:49:04', '2025-03-26 12:02:10'),
 (4, 'cold', 2, 1, 'lkkjjkl', 'sdfsdf', NULL, '1', '22', '2025-03-12', 9, 1, 12.00, 121.00, 1.00, '2', '111', 1, '2025-03-26 12:03:13', '2025-03-26 12:43:58'),
 (5, 'kjhjk', 2, 1, ';lk', 'edcef', NULL, '1', '12', '2023-09-12', 230, 4, 123.00, 12.00, 12.00, '123', '223', 1, '2025-03-30 06:23:41', '2025-03-30 06:24:57');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `buys`
---
-
-DROP TABLE IF EXISTS `buys`;
-CREATE TABLE IF NOT EXISTS `buys` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `product_id` bigint UNSIGNED NOT NULL,
-  `quantity` int NOT NULL,
-  `buy_price` decimal(10,2) NOT NULL,
-  `buyer_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `buyer_mobile` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `buyer_address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `buyer_comment` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_proof` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `buys_product_id_foreign` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -172,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -188,12 +165,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2025_03_17_172810_create_companies_table', 2),
 (10, '2025_03_27_163913_create_staff_table', 3),
 (11, '2025_03_30_161824_create_mobile_repairings_table', 4),
-(13, '2025_03_30_163654_create_mobile_repairing_images_table', 5),
-(15, '2025_04_16_165208_create_products_table', 6),
-(16, '2025_04_16_173151_create_buys_table', 7),
-(17, '2025_04_16_173216_create_sales_table', 7),
-(18, '2025_04_16_173243_create_product_images_table', 7),
-(19, '2025_04_16_174433_create_product_buy_sales_logs_table', 7);
+(13, '2025_03_30_163654_create_mobile_repairing_images_table', 5);
 
 -- --------------------------------------------------------
 
@@ -307,115 +279,6 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `products`
---
-
-DROP TABLE IF EXISTS `products`;
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `sku` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `barcode` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `category_id` bigint UNSIGNED DEFAULT NULL,
-  `brand` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `unit` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
-  `price` decimal(10,2) NOT NULL,
-  `cost_price` decimal(10,2) DEFAULT NULL,
-  `quantity` int NOT NULL DEFAULT '0',
-  `weight` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `size` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `serial_number` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tags` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `published_at` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_by` bigint UNSIGNED DEFAULT NULL,
-  `updated_by` bigint UNSIGNED DEFAULT NULL,
-  `reorder_level` int NOT NULL DEFAULT '10',
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('1','2','3') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT 'available=1',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `products_sku_unique` (`sku`),
-  KEY `products_category_id_foreign` (`category_id`),
-  KEY `products_created_by_foreign` (`created_by`),
-  KEY `products_updated_by_foreign` (`updated_by`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_buy_sales_logs`
---
-
-DROP TABLE IF EXISTS `product_buy_sales_logs`;
-CREATE TABLE IF NOT EXISTS `product_buy_sales_logs` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `product_id` bigint UNSIGNED NOT NULL,
-  `sales_id` bigint UNSIGNED NOT NULL,
-  `buys_id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `action` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `buy_sale_stock` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comments` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_buy_sales_logs_product_id_foreign` (`product_id`),
-  KEY `product_buy_sales_logs_sales_id_foreign` (`sales_id`),
-  KEY `product_buy_sales_logs_buys_id_foreign` (`buys_id`),
-  KEY `product_buy_sales_logs_user_id_foreign` (`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_images`
---
-
-DROP TABLE IF EXISTS `product_images`;
-CREATE TABLE IF NOT EXISTS `product_images` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `product_id` bigint UNSIGNED NOT NULL,
-  `image_path` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sort_order` int NOT NULL DEFAULT '0',
-  `is_primary` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_images_product_id_foreign` (`product_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sales`
---
-
-DROP TABLE IF EXISTS `sales`;
-CREATE TABLE IF NOT EXISTS `sales` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `product_id` bigint UNSIGNED NOT NULL,
-  `quantity` int NOT NULL,
-  `sale_price` decimal(10,2) NOT NULL,
-  `sales_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sales_mobile` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sales_address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sales_comment` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_proof` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `sales_product_id_foreign` (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------

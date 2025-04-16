@@ -67,5 +67,6 @@ Route::resource('accessories', AccessoryController::class);
 Route::resource('companies', CompnayController::class);
 Route::resource('category', CategoryController::class);
 
+//product releated code
 
 

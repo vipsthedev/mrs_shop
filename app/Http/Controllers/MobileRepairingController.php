@@ -31,6 +31,7 @@ class MobileRepairingController extends Controller
         $mobileRepairing=MobileRepairing::with('Company')->get();
         return view('/mobileRepair/index',compact('mobileRepairing'));
     }
+
     public function create()
     {
         $companies = Company::get();

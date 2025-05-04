@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Accessory;
 use App\Models\Category;
 use App\Models\Company;
+use Illuminate\Support\Facades\Route;
 use DB;
 
 
@@ -17,11 +18,29 @@ class AccessoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $accessories = Accessory::with('category')->get();
-        return view('/accessory/index',compact('accessories'));
+        if (str_contains(Route::current()->uri(), 'admin')) {
+
+            $accessories = Accessory::with('category')->get();
+            return view('accessory/index',compact('accessories'));
+        }else{
+
+            if($request->has('search')){
+                 $search = $request->get('search');
+                  $accessories = Accessory::when($search, function ($query, $search) {
+                    return $query->where('name', 'like', '%' . $search . '%')
+                                 ->orWhereHas('Company', function($query) use ($search) {
+                                     $query->where('name', 'like', '%' . $search . '%');
+                                 });
+                })->get();
+            }else{
+               $accessories = Accessory::with('category')->get();
+            }
+            
+            return view('frontend-themes/accessory/index',compact('accessories'));
+        }
     }
 
     /**
@@ -34,7 +53,11 @@ class AccessoryController extends Controller
         //
         $categories = Category::all();
         $companies = Company::get();
-        return view('/accessory/add',compact('companies','categories'));
+        if (str_contains(Route::current()->uri(), 'admin')) {
+            return view('/accessory/add',compact('companies','categories'));
+        }else{
+            return view('frontend-themes/accessory/add',compact('companies','categories'));
+        }
     }
 
     /**
@@ -175,7 +198,11 @@ class AccessoryController extends Controller
     public function salesAccessories(){
 
         $accessories = Accessory::all();
-        return view('/accessory/sales',compact('accessories'));
+         if (str_contains(Route::current()->uri(), 'admin')) {
+            return view('/accessory/sales',compact('accessories'));
+        }else{
+            return view('frontend-themes//accessory/sales',compact('accessories'));
+        }
     }
     public function manageSellingAccessory($request){
         try{

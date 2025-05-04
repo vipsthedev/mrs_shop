@@ -37,6 +37,41 @@ Route::get('/logout', function () {
 
 //User part
 
+    Route::get('/mobile-repairing', [MobileRepairingController::class, 'index'])->name('user-mobile-repairing.index');
+    Route::get('/mobile-repairing-add', [MobileRepairingController::class, 'create'])->name('mobile-repairing-add');
+    Route::post('mobile-repairing', [MobileRepairingController::class, 'store'])->name('mobile-repairing.store');
+    Route::get('mobile-repairing/{id}/edit', [MobileRepairingController::class, 'edit'])->name('user-mobile-repairing.edit');
+    Route::put('mobile-repairing/{id}', [MobileRepairingController::class, 'update'])->name('mobile-repairing.update');
+    Route::delete('mobile-repairing/{id}', [MobileRepairingController::class, 'destroy'])->name('user-mobile-repairing.destroy');
+
+    //custom method in resource 
+    Route::get('/accessories/sales', [AccessoryController::class, 'salesAccessories'])->name('accessories.sales');
+
+    Route::get('/accessories/restock', [AccessoryController::class, 'restockAccessories'])->name('accessories.restock');
+
+    // category
+
+    Route::get('user-category', [CategoryController::class, 'index'])->name('user-category.index');
+    Route::get('user-add-category', [CategoryController::class, 'create'])->name('user-add-category.create');
+    Route::delete('user-category/{id}', [CategoryController::class, 'destroy'])->name('user-category.destroy');
+    Route::get('user-category/{id}/edit', [CategoryController::class, 'edit'])->name('user-category.edit');
+    Route::put('user-category/{id}', [CategoryController::class, 'update'])->name('category.update');
+
+    //accessories
+    Route::get('user-accessories', [AccessoryController::class, 'index'])->name('user-accessories.index');
+    Route::get('user-add-accessories', [AccessoryController::class, 'create'])->name('user-add-accessories.create');
+    Route::delete('user-accessories/{id}', [AccessoryController::class, 'destroy'])->name('user-accessories.destroy');
+    Route::get('user-accessories/{id}/edit', [AccessoryController::class, 'edit'])->name('user-accessories.edit');
+    Route::put('user-accessories/{id}', [AccessoryController::class, 'update'])->name('user-accessories.update');
+
+    //companies
+    Route::get('user-companies', [CompnayController::class, 'index'])->name('user-companies.index');
+    Route::get('user-add-companies', [CompnayController::class, 'create'])->name('user-add-companies.create');
+    Route::delete('user-companies/{id}', [CompnayController::class, 'destroy'])->name('user-companies.destroy');
+    Route::get('user-companies/{id}/edit', [CompnayController::class, 'edit'])->name('user-companies.edit');
+    Route::put('user-companies/{id}', [CompnayController::class, 'update'])->name('user-companies.update');
+
+    
 
 //Admin Part
 // home 
@@ -45,10 +80,10 @@ Route::get('/logout', function () {
     //map 
     Route::get('/maps-gmap', [App\Http\Controllers\MapController::class, 'index'])->name('maps-gmap');
     //mobile-repairing
-    Route::get('/mobile-repairing', [MobileRepairingController::class, 'index'])->name('mobile-repairing.index');
-    Route::get('/mobile-repairing-add', [MobileRepairingController::class, 'create'])->name('mobile-repairing-add');
+    Route::get('/admin/mobile-repairing', [MobileRepairingController::class, 'index'])->name('mobile-repairing.index');
+    Route::get('/admin//mobile-repairing-add', [MobileRepairingController::class, 'create'])->name('mobile-repairing-add');
     Route::post('mobile-repairing', [MobileRepairingController::class, 'store'])->name('mobile-repairing.store');
-    Route::get('mobile-repairing/{id}/edit', [MobileRepairingController::class, 'edit'])->name('mobile-repairing.edit');
+    Route::get('/admin/mobile-repairing/{id}/edit', [MobileRepairingController::class, 'edit'])->name('mobile-repairing.edit');
     Route::put('mobile-repairing/{id}', [MobileRepairingController::class, 'update'])->name('mobile-repairing.update');
     Route::delete('mobile-repairing/{id}', [MobileRepairingController::class, 'destroy'])->name('mobile-repairing.destroy');
 
@@ -68,9 +103,9 @@ Route::get('/logout', function () {
     Route::delete('staff/{id}', [StaffController::class, 'destroy'])->name('staff.destroy');
 
     //custom method in resource 
-    Route::get('/accessories/sales', [AccessoryController::class, 'salesAccessories'])->name('accessories.sales');
+    Route::get('/admin/accessories/sales', [AccessoryController::class, 'salesAccessories'])->name('admin.accessories.sales');
 
-    Route::get('/accessories/restock', [AccessoryController::class, 'restockAccessories'])->name('accessories.restock');
+    Route::get('/admin/accessories/restock', [AccessoryController::class, 'restockAccessories'])->name('admin.accessories.restock');
 
 
 Route::resource('accessories', AccessoryController::class);

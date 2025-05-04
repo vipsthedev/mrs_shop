@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Route;
 
 
 class CategoryController extends Controller
@@ -13,11 +14,24 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $category = Category::get();
-        return view('/category/index',compact('category'));
+        if (str_contains(Route::current()->uri(), 'admin')) {
+            return view('/category/index',compact('category'));
+        }else{
+             if($request->has('search')){
+                 $search = $request->get('search');
+                  $category = category::when($search, function ($query, $search) {
+                    return $query->where('name', 'like', '%' . $search . '%')
+                                 ->orWhereHas('Company', function($query) use ($search) {
+                                     $query->where('name', 'like', '%' . $search . '%');
+                                 });
+                })->get();
+            }
+            return view('/frontend-themes/category/index',compact('category'));
+        }
     }
 
     /**
@@ -29,7 +43,12 @@ class CategoryController extends Controller
     {
         //
         $category = Category::get();
-        return view('/category/add',compact('category'));
+        
+        if (str_contains(Route::current()->uri(), 'admin')) {
+           return view('/category/add',compact('category'));
+        }else{
+           return view('/frontend-themes/category/add',compact('category'));
+        }
     }
 
     /**

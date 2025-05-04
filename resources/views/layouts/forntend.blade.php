@@ -134,14 +134,25 @@ https://templatemo.com/tm-570-chain-app-dev
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <li class="scroll-to-section"><a href="/" class="active">Home</a></li>
+              @if(auth()->check())
               <li class="scroll-to-section">
                 <a href="#category">Reparing <i class="fa fa-caret-down"></i></a>
                 <ul class="submenu">
-                  <li><a href="#web-development">Laptop</a></li>
-                  <li><a href="#mobile-apps">Mobile</a></li>
-                  <li><a href="#seo">Others</a></li>
+                  <li><a href="{{url('mobile-repairing')}}">Laptop</a></li>
+                  <li><a href="{{url('mobile-repairing')}}">Mobile</a></li>
+                  <li><a href="{{url('mobile-repairing')}}">Others</a></li>
                 </ul>
               </li>
+
+              <li class="scroll-to-section">
+                <a href="#buy-sales">Accessory<i class="fa fa-caret-down"></i></a>
+                <ul class="submenu">
+                  <li><a href="{{url('user-accessories')}}">Buy </a></li>
+                  <li><a href="{{url('accessories/sales')}}">Sale</a></li>
+                  <!-- <li><a href="#seo">Screp Products</a></li> -->
+                </ul>
+              </li>
+
               <li class="scroll-to-section">
                 <a href="#buy-sales">BuySales <i class="fa fa-caret-down"></i></a>
                 <ul class="submenu">
@@ -151,23 +162,26 @@ https://templatemo.com/tm-570-chain-app-dev
                 </ul>
               </li>
               <li class="scroll-to-section">
-                <a href="#buy-sales">Accessory<i class="fa fa-caret-down"></i></a>
-                <ul class="submenu">
-                  <li><a href="#web-development">Buy </a></li>
-                  <li><a href="#mobile-apps">Sale</a></li>
-                  <!-- <li><a href="#seo">Screp Products</a></li> -->
-                </ul>
-              </li>
-              <li class="scroll-to-section">
                 <a href="#Others">Others <i class="fa fa-caret-down"></i></a>
                 <ul class="submenu">
+                <li class="scroll-to-section"><a href="{{url('user-category')}}">Category</a></li>
+                <li class="scroll-to-section"><a href="{{url('user-companies')}}">Company</a></li>
                 <li class="scroll-to-section"><a href="#services">Services</a></li>
                 <li class="scroll-to-section"><a href="#about">About</a></li>
                 <li class="scroll-to-section"><a href="#pricing">Pricing</a></li>
                 <li class="scroll-to-section"><a href="#newsletter">Newsletter</a></li>
-              </ul>
+              </ul> 
               </li>
-              <li><div class="gradient-button"><a id="modal_trigger" href="#modal"><i class="fa fa-sign-in-alt"></i> Sign In Now</a></div></li> 
+              <li><div class="gradient-button"><a href="{{url('logout')}}">Sign Out</a></div></li>
+              @else
+               <li class="scroll-to-section"><a href="#about">Gallery</a></li>
+               <li class="scroll-to-section"><a href="#about">About</a></li>
+               <li class="scroll-to-section"><a href="#newsletter">ContactUs</a></li>
+               <li class="scroll-to-section"><a href="#services">Services</a></li>
+               <!-- <li><div class="gradient-button"><a id="modal_trigger" href="#modal"><i class="fa fa-sign-in-alt"></i> Sign In Now</a></div></li>  -->
+               <li><div class="gradient-button"><a href="{{url('login')}}">Sign In Now</a></div></li>
+              @endif
+
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>
@@ -214,13 +228,13 @@ https://templatemo.com/tm-570-chain-app-dev
 
         <!-- Username & Password Login form -->
         <div class="user_login">
-            <form>
+            <form method="POST" action="{{ route('login') }}">
                 <label>Email / Username</label>
-                <input type="text" />
+                <input type="text" name="email"/>
                 <br />
 
                 <label>Password</label>
-                <input type="password" />
+                <input type="password" name="password"/>
                 <br />
 
                 <div class="checkbox">
@@ -230,7 +244,7 @@ https://templatemo.com/tm-570-chain-app-dev
 
                 <div class="action_btns">
                     <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a></div>
-                    <div class="one_half last"><a href="#" class="btn btn_red">Login</a></div>
+                    <div class="one_half last"><button type="submit" class="btn btn-primary">Login</button>Login</a></div>
                 </div>
             </form>
 

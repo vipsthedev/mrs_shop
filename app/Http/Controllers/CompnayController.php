@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use Illuminate\Support\Facades\Route;
 
 class CompnayController extends Controller
 {
@@ -12,11 +13,26 @@ class CompnayController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+
         $companies = Company::get();
-        return view('/companies/index',compact('companies'));
+        if (str_contains(Route::current()->uri(), 'admin')) {
+            return view('/companies/index',compact('companies'));
+        }else{
+            if($request->has('search')){
+                 $search = $request->get('search');
+                  $companies = Company::when($search, function ($query, $search) {
+                    return $query->where('name', 'like', '%' . $search . '%')
+                                 ->orWhereHas('Company', function($query) use ($search) {
+                                     $query->where('name', 'like', '%' . $search . '%');
+                                 }
+                             );
+                })->get();
+            }
+            return view('frontend-themes/companies/index',compact('companies'));
+        }
     }
 
     /**
@@ -27,7 +43,12 @@ class CompnayController extends Controller
     public function create()
     {
         //
-        return view('/companies/add');
+       
+        if (str_contains(Route::current()->uri(), 'admin')) {
+            return view('/companies/add');
+        }else{
+            return view('frontend-themes/companies/add');
+        }
     }
 
     /**

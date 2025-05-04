@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ForntEndController;
 
 use Illuminate\Http\Request;
 use App\Models\MobileRepairing;
 use App\Models\MobileRepairingImages;
 use App\Models\Company;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Route;
 
 
 class MobileRepairingController extends Controller
@@ -27,38 +26,16 @@ class MobileRepairingController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index()
     {
-        if (str_contains(Route::current()->uri(), 'admin')) {
-
-            $mobileRepairing=MobileRepairing::with('Company')->get();
-            return view('/mobileRepair/index',compact('mobileRepairing'));
-        }else{
-            if($request->has('search')){
-                 $search = $request->get('search');
-                  $mobileRepairing = MobileRepairing::when($search, function ($query, $search) {
-                    return $query->where('customer_name', 'like', '%' . $search . '%')
-                                 ->orWhereHas('Company', function($query) use ($search) {
-                                     $query->where('name', 'like', '%' . $search . '%');
-                                 });
-                })->get();
-            }else{
-                $mobileRepairing=MobileRepairing::with('Company')->get();
-            }
-            return view('frontend-themes/mobile/index',compact('mobileRepairing'));
-        }
+        $mobileRepairing=MobileRepairing::with('Company')->get();
+        return view('/mobileRepair/index',compact('mobileRepairing'));
     }
 
     public function create()
     {
-        if (str_contains(Route::current()->uri(), 'admin')) {
-            $companies = Company::get();
-            return view('/mobileRepair/add',compact('companies'));
-        }else{
-
-            $companies = Company::get();
-            return view('/frontend-themes/mobile/add',compact('companies'));
-        }
+        $companies = Company::get();
+        return view('/mobileRepair/add',compact('companies'));
     }
     public function store(Request $request)
     {
@@ -98,7 +75,7 @@ class MobileRepairingController extends Controller
             if($saveData['id']){
                 $this->uploadSubmit($saveData['id'],$request);
             }
-            return redirect()->route('user-mobile-repairing.index')->with('success', 'Mobile Repairing Details added successfully!');
+            return redirect()->route('mobile-repairing.index')->with('success', 'Mobile Repairing Details added successfully!');
     }
     public function uploadSubmit($id,$request){
         try{
@@ -129,15 +106,9 @@ class MobileRepairingController extends Controller
     // Show the form to edit an existing staff member
     public function edit($id)
     {
-        
-        // $mobileRepairing=MobileRepairing::with('Company')->get();
         $mobileRepairing = MobileRepairing::findOrFail($id);
         $companies = Company::get();
-        if (str_contains(Route::current()->uri(), 'admin')) {
-            return view('mobileRepair/edit', compact('mobileRepairing','companies'));
-        }else{
-             return view('frontend-themes/mobile/add', compact('mobileRepairing','companies'));
-        }
+        return view('mobileRepair/edit', compact('mobileRepairing','companies'));
     }
 
     public function update(Request $request, $id)
@@ -186,6 +157,6 @@ class MobileRepairingController extends Controller
         $staff = MobileRepairing::findOrFail($id);
         $staff->delete();
 
-        return redirect()->route('user-mobile-repairing.index')->with('success', 'Mobile Repairing deleted successfully!');
+        return redirect()->route('mobile-repairing.index')->with('success', 'Mobile Repairing deleted successfully!');
     }
 }

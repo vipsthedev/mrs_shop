@@ -22,6 +22,7 @@ class MobileRepairing extends Model
         'status',
         'customer_mobile_name',
         'customer_mobile_model',
+        'customer_mobile_imi_number',
         'customer_mobile_problem',
         'reapring_cost',
         'reapring_charge',
@@ -38,6 +39,11 @@ class MobileRepairing extends Model
     public function Company()
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    public function MobileRepairingImage()
+    {
+        return $this->hasMany(MobileRepairingImages::class,'mobile_repairings_id');
     }
 
 }

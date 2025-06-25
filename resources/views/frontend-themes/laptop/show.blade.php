@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2" style="margin-top: 115px;">
                 <div class="section-heading wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-                    <h4>New <em><a href="{{ route('user-mobile-repairing.index') }}">Mobile Details</a></em></h4>
+                    <h4>New <em>Mobile Details</em></h4>
                     <img src="{{ asset('assets-fornt/images/heading-line-dec.png') }}" alt="" />
                     <p>Fill in the form below for Reapring Details.</p>
                 </div>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="textarea-input" class="form-control-label">Mobile Problem</label></div>
-                        <div class="col-12 col-md-9"><textarea name="customer_mobile_problem" id="textarea-input" rows="9" placeholder="Content..." class="form-control"></textarea></div> <br>
+                        <div class="col-12 col-md-9"><textarea name="customer_mobile_problem" id="textarea-input" rows="9" placeholder="Content..." class="form-control"></textarea></div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="select" class="form-control-label">Select</label></div>

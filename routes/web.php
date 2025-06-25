@@ -6,6 +6,7 @@ use App\Http\Controllers\CompnayController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\MobileRepairingController;
+use App\Http\Controllers\LaptopRepairingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,13 +37,22 @@ Route::get('/logout', function () {
 })->name('logout');
 
 //User part
-
+    // mobile
     Route::get('/mobile-repairing', [MobileRepairingController::class, 'index'])->name('user-mobile-repairing.index');
     Route::get('/mobile-repairing-add', [MobileRepairingController::class, 'create'])->name('mobile-repairing-add');
     Route::post('mobile-repairing', [MobileRepairingController::class, 'store'])->name('mobile-repairing.store');
     Route::get('mobile-repairing/{id}/edit', [MobileRepairingController::class, 'edit'])->name('user-mobile-repairing.edit');
+    Route::get('mobile-repairing/{id}/show', [MobileRepairingController::class, 'show'])->name('user-mobile-repairing.show');
     Route::put('mobile-repairing/{id}', [MobileRepairingController::class, 'update'])->name('mobile-repairing.update');
     Route::delete('mobile-repairing/{id}', [MobileRepairingController::class, 'destroy'])->name('user-mobile-repairing.destroy');
+
+    // laptop
+    Route::get('/laptop-repairing', [LaptopRepairingController::class, 'index'])->name('user-laptop-repairing.index');
+    Route::get('/laptop-repairing-add', [LaptopRepairingController::class, 'create'])->name('laptop-repairing-add');
+    Route::post('laptop-repairing', [LaptopRepairingController::class, 'store'])->name('laptop-repairing.store');
+    Route::get('laptop-repairing/{id}/edit', [LaptopRepairingController::class, 'edit'])->name('user-laptop-repairing.edit');
+    Route::put('laptop-repairing/{id}', [LaptopRepairingController::class, 'update'])->name('laptop-repairing.update');
+    Route::delete('laptop-repairing/{id}', [LaptopRepairingController::class, 'destroy'])->name('user-laptop-repairing.destroy');
 
     //custom method in resource 
     Route::get('/accessories/sales', [AccessoryController::class, 'salesAccessories'])->name('accessories.sales');
@@ -54,6 +64,7 @@ Route::get('/logout', function () {
     Route::get('user-category', [CategoryController::class, 'index'])->name('user-category.index');
     Route::get('user-add-category', [CategoryController::class, 'create'])->name('user-add-category.create');
     Route::delete('user-category/{id}', [CategoryController::class, 'destroy'])->name('user-category.destroy');
+    Route::get('user-show-category', [CategoryController::class, 'create'])->name('user-add-category.show');
     Route::get('user-category/{id}/edit', [CategoryController::class, 'edit'])->name('user-category.edit');
     Route::put('user-category/{id}', [CategoryController::class, 'update'])->name('category.update');
 
@@ -67,6 +78,7 @@ Route::get('/logout', function () {
     //companies
     Route::get('user-companies', [CompnayController::class, 'index'])->name('user-companies.index');
     Route::get('user-add-companies', [CompnayController::class, 'create'])->name('user-add-companies.create');
+    Route::get('user-show-companies', [CompnayController::class, 'show'])->name('user-add-companies.show');
     Route::delete('user-companies/{id}', [CompnayController::class, 'destroy'])->name('user-companies.destroy');
     Route::get('user-companies/{id}/edit', [CompnayController::class, 'edit'])->name('user-companies.edit');
     Route::put('user-companies/{id}', [CompnayController::class, 'update'])->name('user-companies.update');

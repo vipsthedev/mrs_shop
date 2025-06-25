@@ -99,7 +99,11 @@ class CompnayController extends Controller
     {
         //
         $companies = Company::find($id);
-        return view('companies.show', compact('companies'));
+        if (str_contains(Route::current()->uri(), 'admin')) {
+            return view('companies.show',compact('companies'));
+        }else{
+            return view('frontend-themes/companies.show', compact('companies'));
+        }
     }
 
     /**

@@ -49,6 +49,16 @@ class MobileRepairingController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        $mobileRepairing = MobileRepairing::with('MobileRepairingImage')->findOrFail($id);
+        $companies = Company::get();
+        if (str_contains(Route::current()->uri(), 'admin')) {
+            return view('mobileRepair/show', compact('mobileRepairing','companies'));
+        }else{
+             return view('frontend-themes/mobile/show', compact('mobileRepairing','companies'));
+        }
+    }
     public function create()
     {
         if (str_contains(Route::current()->uri(), 'admin')) {
@@ -61,7 +71,8 @@ class MobileRepairingController extends Controller
         }
     }
     public function store(Request $request)
-    {
+    {   
+
         $validated = $request->validate([
                 'customer_name' => 'required|string|max:255',
                 'company_id' => 'required|exists:companies,id',
@@ -85,6 +96,7 @@ class MobileRepairingController extends Controller
                         'status'=>$request['status'],
                         'customer_mobile_name'=>$request['customer_mobile_name'],
                         'customer_mobile_model'=>$request['customer_mobile_model'],
+                        'customer_mobile_imi_number'=>$request['customer_mobile_imi_number'],
                         'customer_mobile_problem'=>$request['customer_mobile_problem'],
                         'reapring_cost'=>$request['reapring_cost'],
                         'reapring_charge'=>$request['reapring_charge'],
@@ -102,6 +114,7 @@ class MobileRepairingController extends Controller
     }
     public function uploadSubmit($id,$request){
         try{
+
             if($request->hasFile('mobile_images'))
             {
                 $allowedfileExtension=['pdf','jpg','png','docx'];
@@ -118,12 +131,15 @@ class MobileRepairingController extends Controller
                         $mobileRepairingImg->mobile_repairings_id = $id;
                         $mobileRepairingImg->mobile_images = $filename;
                         $mobileRepairingImg->save();
+
+                        MobileRepairing::find($id)->update(['mobile_images'=>$filename]);
+
                     }
                 }
             }
         }
         catch(Exception $e){
-            // dd($e);
+            dd($e);
         }
     }
     // Show the form to edit an existing staff member
@@ -131,12 +147,12 @@ class MobileRepairingController extends Controller
     {
         
         // $mobileRepairing=MobileRepairing::with('Company')->get();
-        $mobileRepairing = MobileRepairing::findOrFail($id);
+        $mobileRepairing = MobileRepairing::with('MobileRepairingImage')->findOrFail($id);
         $companies = Company::get();
         if (str_contains(Route::current()->uri(), 'admin')) {
             return view('mobileRepair/edit', compact('mobileRepairing','companies'));
         }else{
-             return view('frontend-themes/mobile/add', compact('mobileRepairing','companies'));
+             return view('frontend-themes/mobile/edit', compact('mobileRepairing','companies'));
         }
     }
 
@@ -166,6 +182,7 @@ class MobileRepairingController extends Controller
                         'status'=>$request['status'],
                         'customer_mobile_name'=>$request['customer_mobile_name'],
                         'customer_mobile_model'=>$request['customer_mobile_model'],
+                        'customer_mobile_imi_number'=>$request['customer_mobile_imi_number'],
                         'customer_mobile_problem'=>$request['customer_mobile_problem'],
                         'reapring_cost'=>$request['reapring_cost'],
                         'reapring_charge'=>$request['reapring_charge'],
@@ -177,7 +194,8 @@ class MobileRepairingController extends Controller
                         'comments'=>$request['delivery_date'],
                    ]);
         $this->uploadSubmit($id,$request);
-        return redirect()->route('mobile-repairing.index')->with('success', 'Mobile Repairing updated successfully!');
+        // return redirect()->route('mobile-repairing.index')->with('success', 'Mobile Repairing updated successfully!');
+        return redirect()->route('user-mobile-repairing.index')->with('success', 'Mobile Repairing updated successfully!');
     }
 
     // Delete the staff member from the database

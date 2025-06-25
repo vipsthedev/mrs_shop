@@ -10,10 +10,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class MobileRepairingImages extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
     
     protected $fillable = [
         'mobile_repairings_id',
         'mobile_images',
     ];
+
+    public function MobileRepairingImage()
+    {
+        return $this->belongsTo(MobileRepairing::class, 'id');
+    }
 }

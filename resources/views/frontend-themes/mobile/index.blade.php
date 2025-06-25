@@ -47,8 +47,10 @@
                <td>{{ $mobile->customer_date }}</td>
                <td>{{ $mobile->Company->name }}</td>
                <td>{{ $mobile->delivery_date }}</td>
+               
                <td style="width:120px"><img src="\mobile-repairing-img\{{ $mobile->mobile_images }}" height="100" width="50" /></td>
                <td>
+                 <a href="{{ route('user-mobile-repairing.show', $mobile->id) }}"><i class="fa fa-eye"></i></a>
                   <a href="{{ route('user-mobile-repairing.edit', $mobile->id) }}"><i class="fa fa-edit"></i></a>
                   <form action="{{ route('mobile-repairing.destroy', $mobile->id) }}" method="POST" style="display:inline;">
                       @csrf

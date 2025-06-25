@@ -92,7 +92,11 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $categories = Category::all();
-        return view('category.show', compact('category'));
+        if (str_contains(Route::current()->uri(), 'admin')) {
+           return view('/category/add',compact('category'));
+        }else{
+            return view('/frontend-themes/category/show', compact('category'));
+        }
     }
 
     /**
@@ -106,7 +110,11 @@ class CategoryController extends Controller
         //
         $category = Category::find($id);
         $categories = Category::all();
-        return view('category.show', compact('category','categories'));
+        if (str_contains(Route::current()->uri(), 'admin')) {
+           return view('/category/add',compact('category'));
+        }else{
+            return view('/frontend-themes/category/edit', compact('category','categories'));
+        }
     }
 
     /**

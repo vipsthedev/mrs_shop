@@ -132,20 +132,20 @@ https://templatemo.com/tm-570-chain-app-dev
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
-            <ul class="nav">
+            <ul class="nav" style="background-color: white;">
               <li class="scroll-to-section"><a href="/" class="active">Home</a></li>
               @if(auth()->check())
               <li class="scroll-to-section">
                 <a href="#category">Reparing <i class="fa fa-caret-down"></i></a>
                 <ul class="submenu">
-                  <li><a href="{{url('mobile-repairing')}}">Laptop</a></li>
+                  <li><a href="{{url('laptop-repairing')}}">Laptop</a></li>
                   <li><a href="{{url('mobile-repairing')}}">Mobile</a></li>
                   <li><a href="{{url('mobile-repairing')}}">Others</a></li>
                 </ul>
               </li>
 
               <li class="scroll-to-section">
-                <a href="#buy-sales">Accessory<i class="fa fa-caret-down"></i></a>
+                <a href="#buy-sales">Inventory Management<i class="fa fa-caret-down"></i></a>
                 <ul class="submenu">
                   <li><a href="{{url('user-accessories')}}">Buy </a></li>
                   <li><a href="{{url('accessories/sales')}}">Sale</a></li>
@@ -153,14 +153,14 @@ https://templatemo.com/tm-570-chain-app-dev
                 </ul>
               </li>
 
-              <li class="scroll-to-section">
+            <!--   <li class="scroll-to-section">
                 <a href="#buy-sales">BuySales <i class="fa fa-caret-down"></i></a>
                 <ul class="submenu">
                   <li><a href="{{url('/product-list')}}">New Products</a></li>
                   <li><a href="#mobile-apps">Old Products</a></li>
                   <li><a href="#seo">Screp Products</a></li>
                 </ul>
-              </li>
+              </li> -->
               <li class="scroll-to-section">
                 <a href="#Others">Others <i class="fa fa-caret-down"></i></a>
                 <ul class="submenu">
@@ -310,7 +310,7 @@ https://templatemo.com/tm-570-chain-app-dev
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-4">
           <div class="footer-widget">
             <h4>Contact Us</h4>
             <p>Rio de Janeiro - RJ, 22795-008, Brazil</p>
@@ -318,7 +318,7 @@ https://templatemo.com/tm-570-chain-app-dev
             <p><a href="#">info@company.co</a></p>
           </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
           <div class="footer-widget">
             <h4>About Us</h4>
             <ul>
@@ -335,7 +335,7 @@ https://templatemo.com/tm-570-chain-app-dev
             </ul>
           </div>
         </div>
-        <div class="col-lg-3">
+        <!-- <div class="col-lg-3">
           <div class="footer-widget">
             <h4>Useful Links</h4>
             <ul>
@@ -351,8 +351,8 @@ https://templatemo.com/tm-570-chain-app-dev
               <li><a href="#">Normal Apps</a></li>
             </ul>
           </div>
-        </div>
-        <div class="col-lg-3">
+        </div> -->
+        <div class="col-lg-4">
           <div class="footer-widget">
             <h4>About Our Company</h4>
             <div class="logo">

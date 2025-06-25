@@ -35,9 +35,7 @@
                         <div class="col-12 col-md-9">
                             <select name="parent_id" id="selectLg" class="form-control">
                                 <option value="">Please select Category</option>
-                                @foreach($category as $cate)
-                                <option value="{{$cate->id}}">{{$cate->name}}</option>
-                                @endforeach
+                               
                             </select>
                             <br />
                         </div>

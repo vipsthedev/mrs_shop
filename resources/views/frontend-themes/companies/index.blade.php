@@ -41,6 +41,7 @@
             <!-- User data will be dynamically inserted here -->
             @foreach($companies as $company)
               <tr>
+                <td>{{ $company->id }}</td>
                 <td>{{ $company->name }}</td>
                 <td>{{ $company->description }}</td>
                 <td>

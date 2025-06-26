@@ -112,16 +112,16 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="text-input" class="form-control-label">Reapring Cost</label></div>
+                        <div class="col col-md-3"><label for="text-input" class="form-control-label">Repairing Cost</label></div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="text-input" name="reapring_cost" placeholder="Enter Reapring Cost" class="form-control" value="{{$mobileRepairing->reapring_cost}}" /><br />
+                            <input type="text" id="text-input" name="repairing_cost" placeholder="Enter Repairing Cost" class="form-control" value="{{$mobileRepairing->repairing_cost}}" /><br />
                             <!-- <small class="form-text text-muted"></small> -->
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="text-input" class="form-control-label">Reapring Charge</label></div>
+                        <div class="col col-md-3"><label for="text-input" class="form-control-label">Repairing Charge</label></div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="text-input" name="reapring_charge" placeholder="Enter Reapring Charge" class="form-control" value="{{$mobileRepairing->reapring_charge}}" /><br />
+                            <input type="text" id="text-input" name="repairing_charge" placeholder="Enter Repairing Charge" class="form-control" value="{{$mobileRepairing->repairing_charge}}" /><br />
                             <!-- <small class="form-text text-muted"></small> -->
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                         <div class="col col-md-3"><label for="file-input" class="form-control-label">Mobile Images</label></div>
                         <div class="col-12 col-md-9"><input type="file" id="file-input" name="mobile_images[]" multiple class="form-control-file" /><br><br>
                         <table>
-                            @foreach($mobileRepairing->MobileRepairingImage as $images)
+                            @foreach($mobileRepairing->images as $images)
                             <td><img style="width:150px" src="\mobile-repairing-img\{{$images->mobile_images}}"></img></td>
                             @endforeach
                         </table>

@@ -20,7 +20,7 @@
         @endif
         <div class="section-heading wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s" >
           <h4>Mobile Reparing <em>List</em></h4>
-          <a href="{{url('mobile-repairing-add')}}">Add Mobile Reparing</a>
+          <a href="{{url('mobile-repairing/add')}}">Add Mobile Reparing</a>
           <!-- <img src="{{ asset('assets-fornt/images/heading-line-dec.png') }}" alt=""> -->
           <!-- <p>Below is the list of users who have registered on your platform.</p> -->
         </div>

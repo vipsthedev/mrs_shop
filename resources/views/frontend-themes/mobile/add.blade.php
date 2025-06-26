@@ -88,16 +88,16 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="text-input" class="form-control-label">Reapring Cost</label></div>
+                        <div class="col col-md-3"><label for="text-input" class="form-control-label">Repairing Cost</label></div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="text-input" name="reapring_cost" placeholder="Enter Reapring Cost" class="form-control" /><br />
+                            <input type="text" id="text-input" name="repairing_cost" placeholder="Enter Reapring Cost" class="form-control" /><br />
                             <!-- <small class="form-text text-muted"></small> -->
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="text-input" class="form-control-label">Reapring Charge</label></div>
+                        <div class="col col-md-3"><label for="text-input" class="form-control-label">Repairing Charge</label></div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="text-input" name="reapring_charge" placeholder="Enter Reapring Charge" class="form-control" /><br />
+                            <input type="text" id="text-input" name="repairing_charge" placeholder="Enter Reapring Charge" class="form-control" /><br />
                             <!-- <small class="form-text text-muted"></small> -->
                         </div>
                     </div>

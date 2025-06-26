@@ -162,8 +162,9 @@
                         <div class="col col-md-3"><label for="file-input" class="form-control-label">Mobile Images</label></div>
                         <div class="col-12 col-md-9"><br>
                            <table>
-                            @foreach($mobileRepairing->MobileRepairingImage as $images)
-                            <td><img style="width:150px" src="\mobile-repairing-img\{{$images->mobile_images}}"></img></td>
+                            @foreach($mobileRepairing->images as $images)
+                            <td><img style="width:150px" src="{{ asset('mobile-repairing-img/' . $images->mobile_images) }}">
+                            </img></td>
                             @endforeach
                            </table>
                     </div>

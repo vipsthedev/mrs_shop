@@ -78,6 +78,21 @@
   /*transition: background-color 0.3s ease;*/
 }
 
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  display: none;
+  position: absolute;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
 
     </style>
     <title>MyShop-Softwer</title>
@@ -123,72 +138,113 @@ https://templatemo.com/tm-570-chain-app-dev
   <!-- ***** Header Area Start ***** -->
   <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
     <div class="container">
+
       <div class="row">
-        <div class="col-12">
-          <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="/" class="logo">
-              <img src="{{ asset('assets-fornt/images/logo.png') }}" alt="Chain App Dev">
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav" style="background-color: white;">
-              <li class="scroll-to-section"><a href="/" class="active">Home</a></li>
-              @if(auth()->check())
-              <li class="scroll-to-section">
-                <a href="#category">Reparing <i class="fa fa-caret-down"></i></a>
-                <ul class="submenu">
-                  <li><a href="{{url('laptop-repairing')}}">Laptop</a></li>
-                  <li><a href="{{url('mobile-repairing')}}">Mobile</a></li>
-                  <li><a href="{{url('mobile-repairing')}}">Others</a></li>
-                </ul>
-              </li>
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="{{ asset('assets-fornt/images/logo.png') }}" alt="Chain App Dev"></a>
 
-              <li class="scroll-to-section">
-                <a href="#buy-sales">Inventory Management<i class="fa fa-caret-down"></i></a>
-                <ul class="submenu">
-                  <li><a href="{{url('user-accessories')}}">Buy </a></li>
-                  <li><a href="{{url('accessories/sales')}}">Sale</a></li>
-                  <!-- <li><a href="#seo">Screp Products</a></li> -->
-                </ul>
-              </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!--   <li class="scroll-to-section">
-                <a href="#buy-sales">BuySales <i class="fa fa-caret-down"></i></a>
-                <ul class="submenu">
-                  <li><a href="{{url('/product-list')}}">New Products</a></li>
-                  <li><a href="#mobile-apps">Old Products</a></li>
-                  <li><a href="#seo">Screp Products</a></li>
-                </ul>
-              </li> -->
-              <li class="scroll-to-section">
-                <a href="#Others">Others <i class="fa fa-caret-down"></i></a>
-                <ul class="submenu">
-                <li class="scroll-to-section"><a href="{{url('user-category')}}">Category</a></li>
-                <li class="scroll-to-section"><a href="{{url('user-companies')}}">Company</a></li>
-                <li class="scroll-to-section"><a href="#services">Services</a></li>
-                <li class="scroll-to-section"><a href="#about">About</a></li>
-                <li class="scroll-to-section"><a href="#pricing">Pricing</a></li>
-                <li class="scroll-to-section"><a href="#newsletter">Newsletter</a></li>
-              </ul> 
-              </li>
-              <li><div class="gradient-button"><a href="{{url('logout')}}">Sign Out</a></div></li>
-              @else
-               <li class="scroll-to-section"><a href="#about">Gallery</a></li>
-               <li class="scroll-to-section"><a href="#about">About</a></li>
-               <li class="scroll-to-section"><a href="#newsletter">ContactUs</a></li>
-               <li class="scroll-to-section"><a href="#services">Services</a></li>
-               <!-- <li><div class="gradient-button"><a id="modal_trigger" href="#modal"><i class="fa fa-sign-in-alt"></i> Sign In Now</a></div></li>  -->
-               <li><div class="gradient-button"><a href="{{url('login')}}">Sign In Now</a></div></li>
-              @endif
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav" style="margin-left: 25%;">
 
-            </ul>        
-            <a class='menu-trigger'>
-                <span>Menu</span>
-            </a>
-            <!-- ***** Menu End ***** -->
-          </nav>
+                <!-- Home -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                @if(auth()->check())
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                      Repairing
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle" href="#">Laptop</a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{url('laptop-repairing/today-deliveries')}}">Today Deliveries</a></li>
+                        <li><a class="dropdown-item" href="{{url('laptop-repairing/add')}}">Add Laptop</a></li>
+                        <li><a class="dropdown-item" href="{{url('laptop-repairing')}}">View Laptop</a></li>
+                      </ul>
+                    </li>
+
+
+                     <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle" href="#">Mobile</a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{url('mobile-repairing/today-deliveries')}}">Today Deliveries</a></li>
+                        <li><a class="dropdown-item" href="{{url('mobile-repairing/add')}}">Add Mobile</a></li>
+                        <li><a class="dropdown-item" href="{{url('mobile-repairing')}}">View Mobile</a></li>
+                      </ul>
+                    </li>
+
+                      <li><a class="dropdown-item" href="#">Others</a></li>
+                  </ul>
+              </li>
+                <!-- Inventory Management Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Inventory Management
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{url('user-accessories')}}">Buy</a></li>
+                        <li><a class="dropdown-item" href="{{url('accessories/sales')}}">Sale</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('user-companies')}}">Company</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('user-category')}}">Category</a>
+                </li>
+                
+                <!-- Others Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Others
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#services">Services</a></li>
+                        <li><a class="dropdown-item" href="#pricing">Pricing</a></li>
+                        <li><a class="dropdown-item" href="#newsletter">Newsletter</a></li>
+                    </ul>
+                </li>
+                 @else
+                   <li class="nav-item">
+                      <a class="nav-link" href="#services">Services</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#pricing">Pricing</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#newsletter">Newsletter</a>
+                  </li>
+                 @endif
+            </ul>
+             @if(auth()->check())
+            <!-- Sign Out -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="{{url('logout')}}">Sign Out</a>
+                </li>
+            </ul>
+            @else
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="{{url('login')}}">Sign In Now</a>
+                </li>
+            </ul>
+            @endif
         </div>
+    </div>
+ </nav>
+       
       </div>
     </div>
   </header>
@@ -446,6 +502,36 @@ https://templatemo.com/tm-570-chain-app-dev
       }
     });
   });
+  document.addEventListener('DOMContentLoaded', function () {
+    const dropdownSubmenus = document.querySelectorAll('.dropdown-submenu > a');
+
+    dropdownSubmenus.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            let submenu = this.nextElementSibling;
+
+            if (submenu && submenu.classList.contains('dropdown-menu')) {
+                submenu.classList.toggle('show');
+
+                // Hide others
+                document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(function (menu) {
+                    if (menu !== submenu) {
+                        menu.classList.remove('show');
+                    }
+                });
+            }
+        });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function () {
+        document.querySelectorAll('.dropdown-submenu .dropdown-menu').forEach(function (menu) {
+            menu.classList.remove('show');
+        });
+    });
+});
 </script>
 
 </body>

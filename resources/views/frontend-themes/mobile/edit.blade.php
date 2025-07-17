@@ -30,6 +30,7 @@
                     @endif
 
                     <div class="row form-group">
+                        <input type="hidden" id="text-input" name="id" value="{{$mobileRepairing->id}}" />
                         <div class="col col-md-3"><label for="text-input" class="form-control-label">Customer Name</label></div>
                         <div class="col-12 col-md-9"><input type="text" id="text-input" name="customer_name" value="{{$mobileRepairing->customer_name}}" placeholder="Enter Customer Name" class="form-control" /><br /></div>
                     </div>

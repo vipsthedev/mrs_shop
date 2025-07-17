@@ -51,6 +51,9 @@ Route::prefix('mobile-repairing')->name('user-mobile-repairing.')->group(functio
     Route::delete('/{id}', [MobileRepairingController::class, 'destroy'])->name('destroy');
 });
 
+Route::get('mobile-repairing/download-pdf/{id}', [MobileRepairingController::class, 'downloadPdf'])->name('download.pdf');
+Route::get('mobile-repairing/today-deliveries', [MobileRepairingController::class, 'todaysDeliveries'])->name('today-deliveries');
+
 // -- Laptop Repairing (User)
 Route::prefix('laptop-repairing')->name('user-laptop-repairing.')->group(function () {
     Route::get('/', [LaptopRepairingController::class, 'index'])->name('index');

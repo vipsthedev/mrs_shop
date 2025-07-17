@@ -9,6 +9,7 @@ use App\Models\Company;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MobileRepairingController extends Controller
 {
@@ -60,12 +61,16 @@ class MobileRepairingController extends Controller
     {
         $validated = $request->validate([
             'customer_name' => 'required|string|max:255',
+            'customer_email'     => 'required|email|unique:mobile_repairings,customer_email',
             'company_id' => 'required|exists:companies,id',
             'repairing_cost' => 'required|numeric|min:0',
             'repairing_charge' => 'required|numeric|min:0',
             'total_amount' => 'required|numeric|min:0',
         ]);
 
+        if (MobileRepairing::where('customer_email', $request->customer_email)->exists()) {
+            return back()->with('error', 'Email already exists in mobile repairings!');
+        }
         $data = $request->only([
             'customer_name', 'customer_email', 'customer_date', 'company_id', 'customer_address',
             'status', 'customer_mobile_name', 'customer_mobile_model', 'customer_mobile_imi_number',
@@ -74,7 +79,6 @@ class MobileRepairingController extends Controller
         ]);
 
         $mobileRepairing = MobileRepairing::create($data);
-
         if ($mobileRepairing->id) {
             $this->uploadSubmit($mobileRepairing->id, $request);
         }
@@ -110,8 +114,7 @@ class MobileRepairingController extends Controller
         ]);
 
         $mobileRepairing->update($data);
-
-        $this->uploadSubmit($mobileRepairing->id, $request);
+        $this->uploadSubmit($request['id'], $request);
 
         return redirect()->route('user-mobile-repairing.index')->with('success', 'Mobile Repairing updated successfully!');
     }
@@ -126,6 +129,7 @@ class MobileRepairingController extends Controller
     private function uploadSubmit($id, Request $request)
     {
         try {
+            // dd($id,$request->hasFile('mobile_images'));
             if ($request->hasFile('mobile_images')) {
                 $allowedExtensions = ['pdf', 'jpg', 'png', 'docx'];
                 $files = $request->file('mobile_images');
@@ -140,11 +144,25 @@ class MobileRepairingController extends Controller
                             'mobile_repairings_id' => $id,
                             'mobile_images' => $filename
                         ]);
+
+                        MobileRepairing::find($id)->update(['mobile_images'=>$filename]);
                     }
                 }
             }
         } catch (Exception $e) {
             Log::error('Image upload error: ' . $e->getMessage());
         }
+    }
+    public function downloadPdf($id)
+    {
+        $mobileRepairing = MobileRepairing::with('images')->findOrFail($id);
+        $pdf = Pdf::loadView('frontend-themes.mobile.mobile-details', compact('mobileRepairing'));
+        return $pdf->download('mobile-repair-details.pdf');
+    }
+
+    public function todaysDeliveries()
+    {
+        $mobileRepairing = MobileRepairing::whereDate('delivery_date', \Carbon\Carbon::today())->get();
+        return view('frontend-themes.mobile.todayDeliveriy', compact('mobileRepairing'));
     }
 }

@@ -7,6 +7,7 @@ use App\Models\MobileRepairing;
 use App\Models\MobileRepairingImages;
 use App\Models\Company;
 use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class MobileRepairingController extends Controller
@@ -158,5 +159,12 @@ class MobileRepairingController extends Controller
         $staff->delete();
 
         return redirect()->route('mobile-repairing.index')->with('success', 'Mobile Repairing deleted successfully!');
+    }
+    
+    public function downloadPdf($id)
+    {
+        $mobileRepairing = MobileRepairing::with('images')->findOrFail($id);
+        $pdf = Pdf::loadView('pdf.mobile-details', compact('mobileRepairing'));
+        return $pdf->download('mobile-repair-details.pdf');
     }
 }

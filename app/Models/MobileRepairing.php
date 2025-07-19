@@ -22,6 +22,7 @@ class MobileRepairing extends Model
      * These fields are allowed for mass assignment via create() or update() methods.
      */
     protected $fillable = [
+        'user_id',
         'customer_name',                // Name of the customer
         'customer_email',              // Email address of the customer
         'customer_date',               // Date of repair submission

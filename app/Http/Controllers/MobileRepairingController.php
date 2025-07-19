@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 use Exception;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Auth;
 
 class MobileRepairingController extends Controller
 {
@@ -31,7 +32,7 @@ class MobileRepairingController extends Controller
         }
 
         $search = $request->get('search');
-        $mobileRepairing = MobileRepairing::when($search, function ($query, $search) {
+        $mobileRepairing = MobileRepairing::where('user_id',Auth::id())->when($search, function ($query, $search) {
             return $query->where('customer_name', 'like', "%$search%")
                          ->orWhereHas('Company', function ($q) use ($search) {
                              $q->where('name', 'like', "%$search%");
@@ -80,7 +81,7 @@ class MobileRepairingController extends Controller
 
         $mobileRepairing = MobileRepairing::create($data);
         if ($mobileRepairing->id) {
-            // MobileRepairing::find($mobileRepairing->id)->update(['user_id'=>auth()->id]);
+            MobileRepairing::find($mobileRepairing->id)->update(['user_id'=>Auth::id()]);
             $this->uploadSubmit($mobileRepairing->id, $request);
         }
 

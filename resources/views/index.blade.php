@@ -789,6 +789,87 @@ https://templatemo.com/tm-570-chain-app-dev
       </div>
     </div>
   </footer>
+  <footer id="newsletter">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <div class="section-heading">
+          <h4>Stay Updated With Our Latest Repair Offers & Tips</h4>
+        </div>
+      </div>
+      <div class="col-lg-6 offset-lg-3">
+        <form id="search" action="#" method="GET">
+          <div class="row">
+            <div class="col-lg-6 col-sm-6">
+              <fieldset>
+                <input type="address" name="address" class="email" placeholder="Email Address..." autocomplete="on" required>
+              </fieldset>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <fieldset>
+                <button type="submit" class="main-button">Subscribe Now <i class="fa fa-angle-right"></i></button>
+              </fieldset>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="footer-widget">
+          <h4>Contact Us</h4>
+          <p>Bagdana Road, Gujarat, India</p>
+          <p><a href="#">+91 98765 43210</a></p>
+          <p><a href="#">support@repairhub.in</a></p>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="footer-widget">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Mobile Repair</a></li>
+            <li><a href="#">Laptop Repair</a></li>
+            <li><a href="#">Data Recovery</a></li>
+            <li><a href="#">Screen Replacement</a></li>
+            <li><a href="#">Battery Replacement</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="footer-widget">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Customer Reviews</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="footer-widget">
+          <h4>About Repair Hub</h4>
+          <div class="logo">
+            <img src="{{ asset('assets-fornt/images/white-logo.png') }}" alt="">
+          </div>
+          <p>We provide expert Mobile & Laptop repairing services with 100% customer satisfaction and genuine parts.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="copyright-text">
+          <p>© 2025 Repair Hub. All Rights Reserved. <br>Design: <a href="https://templatemo.com/" target="_blank" title="css templates">TemplateMo</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
 
 
   <!-- Scripts -->

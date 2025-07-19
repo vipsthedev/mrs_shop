@@ -356,7 +356,7 @@ https://templatemo.com/tm-570-chain-app-dev
     <div class="row">
       <div class="col-lg-8 offset-lg-2">
         <div class="section-heading">
-          <h4>Stay Updated With Our Latest Repair Offers & Tips</h4>
+          <h4>Stay Updated With Our Repair Offers & Tips</h4>
         </div>
       </div>
       <div class="col-lg-6 offset-lg-3">
@@ -391,8 +391,8 @@ https://templatemo.com/tm-570-chain-app-dev
         <div class="footer-widget">
           <h4>Our Services</h4>
           <ul>
-            <li><a href="#">Mobile Repair</a></li>
-            <li><a href="#">Laptop Repair</a></li>
+            <li><a href="{{url('mobile-repairing/today-deliveries')}}">Mobile Repair</a></li>
+            <li><a href="{{url('laptop-repairing/today-deliveries')}}">Laptop Repair</a></li>
             <li><a href="#">Data Recovery</a></li>
             <li><a href="#">Screen Replacement</a></li>
             <li><a href="#">Battery Replacement</a></li>
@@ -404,8 +404,8 @@ https://templatemo.com/tm-570-chain-app-dev
         <div class="footer-widget">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#about">About Us</a></li>
             <li><a href="#">Our Team</a></li>
             <li><a href="#">Customer Reviews</a></li>
             <li><a href="#">Contact</a></li>
@@ -431,6 +431,15 @@ https://templatemo.com/tm-570-chain-app-dev
     </div>
   </div> 
   </footer>
+
+   <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets-fornt/js/owl-carousel.js') }}"></script>
+  <script src="{{ asset('assets-fornt/js/animation.js') }}"></script>
+  <script src="{{ asset('assets-fornt/js/imagesloaded.js') }}"></script>
+  <script src="{{ asset('assets-fornt/js/popup.js') }}"></script>
+  <script src="{{ asset('assets-fornt/js/custom.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>

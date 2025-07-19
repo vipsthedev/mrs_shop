@@ -80,6 +80,7 @@ class MobileRepairingController extends Controller
 
         $mobileRepairing = MobileRepairing::create($data);
         if ($mobileRepairing->id) {
+            // MobileRepairing::find($mobileRepairing->id)->update(['user_id'=>auth()->id]);
             $this->uploadSubmit($mobileRepairing->id, $request);
         }
 
